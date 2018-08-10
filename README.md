@@ -38,6 +38,29 @@ Find the nearest `k` points to `[x, y]`. Returns an array of points:
 kd.nearest([x, y], k)
 ```
 
+## Example
+
+```crystal
+require "kd_tree"
+
+points = [
+  [2.0, 3.0],
+  [5.0, 4.0],
+  [4.0, 7.0],
+  [7.0, 2.0],
+  [8.0, 1.0],
+  [9.0, 6.0],
+]
+
+kd = Kd::Tree.new(points)
+
+kd.nearest([1.0, 1.0])
+# => [[2.0, 3.0]])
+
+kd_tree.nearest([1.0, 1.0], 2)
+# => [[2.0, 3.0], [5.0, 4.0]])
+```
+
 ## Contributing
 
 1. Fork it (<https://github.com/mamantoha/kd_tree/fork>)
