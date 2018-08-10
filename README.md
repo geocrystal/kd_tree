@@ -14,7 +14,7 @@ Add this to your application's `shard.yml`:
 
 ```yaml
 dependencies:
-  kdtree:
+  kd_tree:
     github: mamantoha/kd_tree
 ```
 
