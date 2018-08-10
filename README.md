@@ -20,7 +20,23 @@ dependencies:
 require "kd_tree"
 ```
 
-TODO: Write usage instructions here
+Construct a new tree. Each point should be of the form `[x, y]`, where `x` and `y` are floats:
+
+```crystall
+kd = Kd::Tree.new(points)
+```
+
+Find the nearest point to `[x, y]`. Returns an array with one point:
+
+```crystal
+kd.nearest([x, y])
+```
+
+Find the nearest `k` points to `[x, y]`. Returns an array of points:
+
+```crystal
+kd.nearest([x, y], k)
+```
 
 ## Contributing
 
