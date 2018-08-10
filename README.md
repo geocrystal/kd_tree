@@ -26,7 +26,7 @@ require "kd_tree"
 
 Construct a new tree. Each point should be of the form `[x, y]`, where `x` and `y` are floats:
 
-```crystall
+```crystal
 kd = Kd::Tree.new(points)
 ```
 
