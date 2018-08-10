@@ -1,5 +1,9 @@
 # Kd::Tree
 
+[![Build Status](http://img.shields.io/travis/mamantoha/kd_tree.svg?style=flat)](https://travis-ci.org/mamantoha/kd_tree)
+[![GitHub release](https://img.shields.io/github/release/mamantoha/kd_tree.svg)](https://github.com/mamantoha/kd_tree/releases)
+[![License](https://img.shields.io/github/license/mamantoha/kd_tree.svg)](https://github.com/mamantoha/kd_tree/blob/master/LICENSE)
+
 Crystal implementation of "K-Dimensional Tree" and "N-Nearest Neighbors"
 based on http://en.wikipedia.org/wiki/Kd-tree.
 
