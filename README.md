@@ -65,6 +65,19 @@ kd_tree.nearest([1.0, 1.0], 2)
 # => [[2.0, 3.0], [5.0, 4.0]])
 ```
 
+## Performance
+
+Using a tree with 1 million points `[x, y]` on my i7-8550U CPU @ 1.80GHz:
+
+```
+build(init)       ~5 seconds
+nearest point     00.000145104
+nearest point 5   00.000253196
+nearest point 50  00.002349640
+nearest point 255 00.078125176
+nearest point 999 04.235391149
+```
+
 ## Contributing
 
 1. Fork it (<https://github.com/mamantoha/kd_tree/fork>)
