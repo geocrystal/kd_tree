@@ -87,16 +87,17 @@ module Kd
     private def build(points : Array(Point), depth = 0)
       return if points.empty?
 
-      split = depth % @k
+      # Select axis based on depth so that axis cycles through all valid values
+      axis = depth % @k
 
       # Sort point list and choose median as pivot element
-      points = points.sort { |m, n| m[split] <=> n[split] }
+      points.sort! { |m, n| m[axis] <=> n[axis] }
       pivot = points.size / 2
 
       # Create node and construct subtrees
       Node.new(
         points[pivot],
-        split,
+        axis,
         build(points[0...pivot], depth + 1),
         build(points[pivot + 1..-1], depth + 1)
       )
