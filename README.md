@@ -27,7 +27,7 @@ require "kd_tree"
 Construct a new tree. Each point should be of the form `[x, y]`, where `x` and `y` are floats:
 
 ```crystal
-kd = Kd::Tree.new(points)
+kd = Kd::Tree(Int32).new(points)
 ```
 
 Find the nearest point to `[x, y]`. Returns an array with one point:
@@ -56,7 +56,7 @@ points = [
   [9.0, 6.0],
 ]
 
-kd = Kd::Tree.new(points)
+kd = Kd::Treei(Float64).new(points)
 
 kd.nearest([1.0, 1.0])
 # => [[2.0, 3.0]])
