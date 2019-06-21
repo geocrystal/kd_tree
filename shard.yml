@@ -1,5 +1,5 @@
 name: kd_tree
-version: 0.1.0
+version: 0.2.0
 
 description: |
   Crystal implementation of "K-Dimensional Tree" and "N-Nearest Neighbors"
