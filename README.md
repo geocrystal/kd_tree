@@ -66,15 +66,15 @@ kd_tree.nearest([1.0, 1.0], 2)
 
 ## Performance
 
-Using a tree with 1 million points `[x, y]` on my i7-8550U CPU @ 1.80GHz:
+Using a tree with 1 million points `[x, y] of Float64` on my i7-8550U CPU @ 1.80GHz:
 
 ```console
-build(init)       ~5 seconds
-nearest point     00.000145104
-nearest point 5   00.000253196
-nearest point 50  00.002349640
-nearest point 255 00.078125176
-nearest point 999 04.235391149
+build(init)       ~10 seconds
+nearest point     00.000278579
+nearest point 5   00.000693038
+nearest point 50  00.007207470
+nearest point 255 00.134533902
+nearest point 999 08.510465131
 ```
 
 ## Contributing
