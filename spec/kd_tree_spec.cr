@@ -1,14 +1,40 @@
 require "./spec_helper"
 
 describe Kd::Tree do
-  points = [[2.0, 3.0], [5.0, 4.0]]
+  describe "#initialize" do
+    it "with Float64" do
+      points = [[2.0, 3.0], [5.0, 4.0]]
 
-  it "#initialize" do
-    kd_tree = Kd::Tree.new(points)
-    kd_tree.should be_a(Kd::Tree)
+      kd_tree = Kd::Tree(Float64).new(points)
+      kd_tree.should be_a(Kd::Tree(Float64))
+    end
+
+    it "with Int32" do
+      points = [[2, 3], [5, 4]]
+
+      kd_tree = Kd::Tree(Int32).new(points)
+      kd_tree.should be_a(Kd::Tree(Int32))
+    end
   end
 
   describe "two-dimensional array" do
+    describe "with Int32" do
+      points = [
+        [2, 3],
+        [5, 4],
+        [4, 7],
+        [7, 2],
+        [8, 1],
+        [9, 6],
+      ]
+      kd_tree = Kd::Tree(Int32).new(points)
+
+      it "#nearest one" do
+        res = kd_tree.nearest([1, 1])
+        res.should eq([[2, 3]])
+      end
+    end
+
     points = [
       [2.0, 3.0],
       [5.0, 4.0],
@@ -17,7 +43,7 @@ describe Kd::Tree do
       [8.0, 1.0],
       [9.0, 6.0],
     ]
-    kd_tree = Kd::Tree.new(points)
+    kd_tree = Kd::Tree(Float64).new(points)
 
     it "have root" do
       kd_tree.root.should_not eq(nil)
@@ -48,7 +74,7 @@ describe Kd::Tree do
       [8.0, 1.0, 0.0],
       [9.0, 6.0, 0.1],
     ]
-    kd_tree = Kd::Tree.new(points)
+    kd_tree = Kd::Tree(Float64).new(points)
 
     it "#nearest one" do
       res = kd_tree.nearest([1.0, 1.0, 0.0])

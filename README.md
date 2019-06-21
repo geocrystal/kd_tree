@@ -5,8 +5,7 @@
 [![License](https://img.shields.io/github/license/mamantoha/kd_tree.svg)](https://github.com/mamantoha/kd_tree/blob/master/LICENSE)
 
 Crystal implementation of "K-Dimensional Tree" and "N-Nearest Neighbors"
-based on http://en.wikipedia.org/wiki/Kd-tree.
-
+based on <http://en.wikipedia.org/wiki/Kd-tree>.
 
 ## Installation
 
@@ -24,10 +23,10 @@ dependencies:
 require "kd_tree"
 ```
 
-Construct a new tree. Each point should be of the form `[x, y]`, where `x` and `y` are floats:
+Construct a new tree. Each point should be of the form `[x, y]`, where `x` and `y` are numbers(`Int32`, `Float64`, etc):
 
 ```crystal
-kd = Kd::Tree.new(points)
+kd = Kd::Tree(Int32).new(points)
 ```
 
 Find the nearest point to `[x, y]`. Returns an array with one point:
@@ -56,7 +55,7 @@ points = [
   [9.0, 6.0],
 ]
 
-kd = Kd::Tree.new(points)
+kd = Kd::Tree(Float64).new(points)
 
 kd.nearest([1.0, 1.0])
 # => [[2.0, 3.0]])
@@ -67,15 +66,15 @@ kd_tree.nearest([1.0, 1.0], 2)
 
 ## Performance
 
-Using a tree with 1 million points `[x, y]` on my i7-8550U CPU @ 1.80GHz:
+Using a tree with 1 million points `[x, y] of Float64` on my i7-8550U CPU @ 1.80GHz:
 
-```
-build(init)       ~5 seconds
-nearest point     00.000145104
-nearest point 5   00.000253196
-nearest point 50  00.002349640
-nearest point 255 00.078125176
-nearest point 999 04.235391149
+```console
+build(init)       ~10 seconds
+nearest point     00.000278579
+nearest point 5   00.000693038
+nearest point 50  00.007207470
+nearest point 255 00.134533902
+nearest point 999 08.510465131
 ```
 
 ## Contributing
