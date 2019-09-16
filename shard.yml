@@ -1,5 +1,5 @@
 name: kd_tree
-version: 0.2.0
+version: 0.3.0
 
 description: |
   Crystal implementation of "K-Dimensional Tree" and "N-Nearest Neighbors"
@@ -7,6 +7,6 @@ description: |
 authors:
   - Anton Maminov <anton.maminov@gmail.com>
 
-crystal: 0.29.0
+crystal: 0.30.0
 
 license: MIT
