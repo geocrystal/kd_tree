@@ -90,7 +90,7 @@ module Kd
 
       # Sort point list and choose median as pivot element
       points.sort! { |m, n| m[axis] <=> n[axis] }
-      pivot = points.size / 2
+      pivot = points.size // 2
 
       # Create node and construct subtrees
       Node(T).new(
