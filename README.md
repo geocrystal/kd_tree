@@ -1,8 +1,8 @@
 # Kd::Tree
 
-[![Build Status](http://img.shields.io/travis/mamantoha/kd_tree.svg?style=flat)](https://travis-ci.org/mamantoha/kd_tree)
-[![GitHub release](https://img.shields.io/github/release/mamantoha/kd_tree.svg)](https://github.com/mamantoha/kd_tree/releases)
-[![License](https://img.shields.io/github/license/mamantoha/kd_tree.svg)](https://github.com/mamantoha/kd_tree/blob/master/LICENSE)
+[![Build Status](http://img.shields.io/travis/geocrystal/kd_tree.svg?style=flat)](https://travis-ci.org/geocrystal/kd_tree)
+[![GitHub release](https://img.shields.io/github/release/geocrystal/kd_tree.svg)](https://github.com/geocrystal/kd_tree/releases)
+[![License](https://img.shields.io/github/license/geocrystal/kd_tree.svg)](https://github.com/geocrystal/kd_tree/blob/master/LICENSE)
 
 Crystal implementation of "K-Dimensional Tree" and "N-Nearest Neighbors"
 based on <http://en.wikipedia.org/wiki/Kd-tree>.
@@ -14,7 +14,7 @@ Add this to your application's `shard.yml`:
 ```yaml
 dependencies:
   kd_tree:
-    github: mamantoha/kd_tree
+    github: geocrystal/kd_tree
 ```
 
 ## Usage
@@ -79,7 +79,7 @@ nearest point 999 08.510465131
 
 ## Contributing
 
-1. Fork it (<https://github.com/mamantoha/kd_tree/fork>)
+1. Fork it (<https://github.com/geocrystal/kd_tree/fork>)
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
