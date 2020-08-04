@@ -79,6 +79,7 @@ module Kd
       # squared euclidean distance (to avoid expensive sqrt operation)
       m.each_with_index.reduce(0) do |sum, (coord, index)|
         sum += (coord - n[index]) ** 2
+        sum
       end
     end
 
