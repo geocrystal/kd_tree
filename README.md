@@ -1,6 +1,5 @@
 # Kd::Tree
 
-[![Build Status](http://img.shields.io/travis/geocrystal/kd_tree.svg?style=flat)](https://travis-ci.org/geocrystal/kd_tree)
 [![GitHub release](https://img.shields.io/github/release/geocrystal/kd_tree.svg)](https://github.com/geocrystal/kd_tree/releases)
 [![License](https://img.shields.io/github/license/geocrystal/kd_tree.svg)](https://github.com/geocrystal/kd_tree/blob/master/LICENSE)
 
