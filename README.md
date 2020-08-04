@@ -1,6 +1,6 @@
 # Kd::Tree
 
-![Crystal CI](https://github.com/geocrystal/kd_tree/workflows/Crystal%20CI/badge.svg)
+![Crystal CI](https://github.com/geocrystal/kd_tree/workflows/Crystal%20CI/badge.svg?branch=master)
 [![GitHub release](https://img.shields.io/github/release/geocrystal/kd_tree.svg)](https://github.com/geocrystal/kd_tree/releases)
 [![Docs](https://img.shields.io/badge/docs-available-brightgreen.svg)](https://geocrystal.github.io/kd_tree/)
 [![License](https://img.shields.io/github/license/geocrystal/kd_tree.svg)](https://github.com/geocrystal/kd_tree/blob/master/LICENSE)
