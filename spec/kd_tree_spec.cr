@@ -35,6 +35,24 @@ describe Kd::Tree do
       end
     end
 
+    describe "with negative" do
+      points = [
+        [-1, -1],
+        [0, 0],
+        [5, 4],
+        [4, 7],
+        [7, 2],
+        [8, 1],
+        [9, 6],
+      ]
+      kd_tree = Kd::Tree(Int32).new(points)
+
+      it "#nearest one" do
+        res = kd_tree.nearest([-2, -2])
+        res.should eq([[-1, -1]])
+      end
+    end
+
     points = [
       [2.0, 3.0],
       [5.0, 4.0],
