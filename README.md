@@ -69,6 +69,8 @@ kd_tree.nearest([1.0, 1.0], 2)
 
 Using a tree with 1 million points `[x, y] of Float64` on my i7-8550U CPU @ 1.80GHz:
 
+`crystal run benchmark/benchmark.cr --release`
+
 ```console
 Benchmarking KD-Tree with 1 million points
 build(init): 3.41 seconds
