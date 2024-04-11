@@ -104,4 +104,35 @@ describe Kd::Tree do
       res.should eq([[2.0, 3.0, 0.0], [5.0, 4.0, 0.0]])
     end
   end
+
+  describe "#nearest" do
+    # https://github.com/geocrystal/kd_tree/issues/2
+    it "should equal naive implementation" do
+      ndim = 2
+      k = 3
+      distance = ->(m : Array(Float64), n : Array(Float64)) do
+        m.each_with_index.reduce(0) do |sum, (coord, index)|
+          sum += (coord - n[index]) ** 2
+          sum
+        end
+      end
+
+      10.times do
+        points = Array.new(10) do
+          Array.new(ndim) do
+            rand(-10.0..10.0)
+          end
+        end
+        kd_tree = Kd::Tree(Float64).new(points)
+        target = Array.new(ndim) do
+          rand(-11.0..11.0)
+        end
+        res = kd_tree.nearest(target, k)
+        sorted = points.sort_by do |p|
+          distance.call(p, target)
+        end.reverse!
+        (res - sorted[-k..]).should eq [] of Float64
+      end
+    end
+  end
 end
