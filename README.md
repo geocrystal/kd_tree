@@ -67,7 +67,32 @@ kd_tree.nearest([1.0, 1.0], 2)
 
 ### Complex objects
 
+`Kd::Tree(T)` can accept any object that responds to `#size` and `#[](i : Int)` methods.
+
 ```crystal
+class GeoLocation
+  property name : String
+  property longitude : Float64
+  property latitude : Float64
+
+  def initialize(@name : String, @longitude : Float64, @latitude : Float64)
+  end
+
+  # Define an indexer to allow easy access by index for longitude and latitude
+  def [](index : Int32) : Float64
+    case index
+    when 0 then @longitude
+    when 1 then @latitude
+    else        raise "Index out of bounds"
+    end
+  end
+
+  # Assuming all GeoLocation objects are 2-dimensional
+  def size
+    2
+  end
+end
+
 # Create an array of GeoLocation points
 points = [
   GeoLocation.new("New York", -73.935242, 40.730610),
