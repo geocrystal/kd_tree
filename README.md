@@ -24,10 +24,10 @@ dependencies:
 require "kd_tree"
 ```
 
-Construct a new tree. Each point should be of the form `[x, y]`, where `x` and `y` are numbers(`Int32`, `Float64`, etc):
+For example, construct a new tree where each point is represented as a two-dimensional array in the form [x, y], where x and y are numbers (such as Int32, Float64, etc).
 
 ```crystal
-kd = Kd::Tree(Int32).new(points)
+kd = Kd::Tree(Array(Int32)).new(points)
 ```
 
 Find the nearest point to `[x, y]`. Returns an array with one point:
@@ -56,13 +56,34 @@ points = [
   [9.0, 6.0],
 ]
 
-kd = Kd::Tree(Float64).new(points)
+kd = Kd::Tree(Array(Float64)).new(points)
 
 kd.nearest([1.0, 1.0])
 # => [[2.0, 3.0]])
 
 kd_tree.nearest([1.0, 1.0], 2)
 # => [[2.0, 3.0], [5.0, 4.0]])
+```
+
+### Complex objects
+
+```crystal
+# Create an array of GeoLocation points
+points = [
+  GeoLocation.new("New York", -73.935242, 40.730610),
+  GeoLocation.new("Los Angeles", -118.243683, 34.052235),
+  GeoLocation.new("London", -0.127647, 51.507322),
+  GeoLocation.new("Tokyo", 139.691711, 35.689487),
+]
+
+# Initialize the KD-tree with these points
+kd_tree = Kd::Tree(GeoLocation).new(points)
+
+# Find the nearest point to London
+target = GeoLocation.new("Near London", -0.125740, 51.508530)
+nearest_point = kd_tree.nearest(target, 1)
+puts "Nearest to London: #{nearest_point.first.name} (longitude #{nearest_point.first.longitude}, latitude #{nearest_point.first.latitude})"
+# Nearest to London: London (longitude -0.127647, latitude 51.507322)
 ```
 
 ## Performance

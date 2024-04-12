@@ -7,7 +7,7 @@ points = Array.new(1_000_000) { [rand * 100.0, rand * 100.0] }
 puts "Benchmarking KD-Tree with 1 million points"
 tree = nil
 build_time = Benchmark.measure {
-  tree = Kd::Tree(Float64).new(points)
+  tree = Kd::Tree(Array(Float64)).new(points)
 }
 
 puts "build(init): #{build_time.total.round(2)} seconds"

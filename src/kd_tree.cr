@@ -6,25 +6,36 @@ module Kd
     class Node(T)
       getter pivot, split, left, right
 
-      def initialize(
-        @pivot : Array(T),
-        @split : Int32,
-        @left : self?,
-        @right : self?
-      )
+      def initialize(@pivot : T, @split : Int32, @left : self?, @right : self?)
       end
     end
 
     getter root : Node(T)?
     @k : Int32
 
-    def initialize(points : Array(Array(T)))
+    def initialize(points : Array(T))
       @k = points.first.size # assumes all points have the same dimension
       @root = build_tree(points, 0)
     end
 
-    def nearest(target : Array(T), n : Int32 = 1) : Array(Array(T))
-      return [] of Array(T) if n < 1
+    private def build_tree(points : Array(T), depth : Int32) : Node(T)?
+      return if points.empty?
+
+      axis = depth % @k
+      points.sort_by!(&.[axis])
+      median = points.size // 2
+
+      # Create node and construct subtrees
+      Node(T).new(
+        points[median],
+        axis,
+        build_tree(points[0...median], depth + 1),
+        build_tree(points[median + 1..], depth + 1)
+      )
+    end
+
+    def nearest(target : T, n : Int32 = 1) : Array(T)
+      return [] of T if n < 1
 
       best_nodes = Priority::Queue(Node(T)).new
 
@@ -35,7 +46,7 @@ module Kd
 
     private def find_n_nearest(
       node : Node(T)?,
-      target : Array(T),
+      target : T,
       depth : Int32,
       best_nodes : Priority::Queue(Node(T)),
       n : Int32
@@ -58,25 +69,9 @@ module Kd
       end
     end
 
-    private def distance(m : Array(T), n : Array(T))
+    private def distance(m : T, n : T)
       # squared euclidean distance (to avoid expensive sqrt operation)
-      m.each_with_index.sum { |coord, index| (coord - n[index]) ** 2 }
-    end
-
-    private def build_tree(points : Array(Array(T)), depth : Int32) : Node(T)?
-      return if points.empty?
-
-      axis = depth % @k
-      points.sort_by!(&.[axis])
-      median = points.size // 2
-
-      # Create node and construct subtrees
-      Node(T).new(
-        points[median],
-        axis,
-        build_tree(points[0...median], depth + 1),
-        build_tree(points[median + 1..], depth + 1)
-      )
+      @k.times.sum { |i| (m[i] - n[i]) ** 2 }
     end
   end
 end
