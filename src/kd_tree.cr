@@ -1,3 +1,4 @@
+require "./ext/priority-queue"
 require "./kd_tree/*"
 
 module Kd
@@ -25,18 +26,18 @@ module Kd
     def nearest(target : Array(T), n : Int32 = 1) : Array(Array(T))
       return [] of Array(T) if n < 1
 
-      best_nodes = Array(Node(T)).new
+      best_nodes = Priority::Queue(Node(T)).new
 
       find_n_nearest(@root, target, 0, best_nodes, n)
 
-      best_nodes.map(&.pivot)
+      best_nodes.map(&.value.pivot)
     end
 
     private def find_n_nearest(
       node : Node(T)?,
       target : Array(T),
       depth : Int32,
-      best_nodes : Array(Node(T)),
+      best_nodes : Priority::Queue(Node(T)),
       n : Int32
     )
       return unless node
@@ -48,29 +49,25 @@ module Kd
 
       find_n_nearest(next_node, target, depth + 1, best_nodes, n)
 
-      if best_nodes.size < n || distance(target, node.pivot) < distance(target, best_nodes.last.pivot)
-        best_nodes << node
-        best_nodes.sort_by! { |nd| distance(target, nd.pivot) }
-        best_nodes.pop if best_nodes.size > n
-      end
+      best_nodes.push(distance(target, node.pivot), node)
 
-      if other_node && (best_nodes.size < n || (target[axis] - node.pivot[axis]).abs**2 < distance(target, best_nodes.last.pivot))
+      best_nodes.pop if best_nodes.size > n
+
+      if other_node && (best_nodes.size < n || (target[axis] - node.pivot[axis]).abs ** 2 < distance(target, best_nodes.last.value.pivot))
         find_n_nearest(other_node, target, depth + 1, best_nodes, n)
       end
     end
 
     private def distance(m : Array(T), n : Array(T))
       # squared euclidean distance (to avoid expensive sqrt operation)
-      m.each_with_index.sum do |coord, index|
-        (coord - n[index]) ** 2
-      end
+      m.each_with_index.sum { |coord, index| (coord - n[index]) ** 2 }
     end
 
     private def build_tree(points : Array(Array(T)), depth : Int32) : Node(T)?
       return if points.empty?
 
       axis = depth % @k
-      points.sort_by! { |point| point[axis] }
+      points.sort_by!(&.[axis])
       median = points.size // 2
 
       # Create node and construct subtrees
