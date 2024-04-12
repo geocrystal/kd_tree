@@ -111,6 +111,39 @@ puts "Nearest to London: #{nearest_point.first.name} (longitude #{nearest_point.
 # Nearest to London: London (longitude -0.127647, latitude 51.507322)
 ```
 
+### Distance
+
+For distance calculations, the squared Euclidean distance is used. However, you can easily monkey-patch the `Kd::Tree#distance` method to implement another algorithm, such as the Haversine formula, to calculate distances between two points given their latitudes and longitudes.
+
+```crystal
+require "haversine"
+
+module Kd
+  class Tree(T)
+    private def distance(m : T, n : T)
+      # Calling `Haversine.distance` with 2 pairs of latitude/longitude coordinates.
+      # Returns a distance in meters.
+      Haversine.distance({m.latitude, m.longitude}, {n.latitude, n.longitude}).to_meters
+    end
+  end
+end
+
+points = [
+  GeoLocation.new("New York", -73.935242, 40.730610),
+  GeoLocation.new("Los Angeles", -118.243683, 34.052235),
+  GeoLocation.new("London", -0.127647, 51.507322),
+  GeoLocation.new("Tokyo", 139.691711, 35.689487),
+]
+
+kd_tree = Kd::Tree(GeoLocation).new(points)
+
+# Find the nearest point to London
+target = GeoLocation.new("Near London", -0.125740, 51.508530)
+nearest_point = kd_tree.nearest(target, 1)
+puts "Nearest to London: #{nearest_point.first.name} (longitude #{nearest_point.first.longitude}, latitude #{nearest_point.first.latitude})"
+# Nearest to London: London (longitude -0.127647, latitude 51.507322)
+```
+
 ## Performance
 
 Using a tree with 1 million points `[x, y] of Float64` on my i7-8550U CPU @ 1.80GHz:
