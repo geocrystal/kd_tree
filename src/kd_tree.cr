@@ -30,12 +30,15 @@ module Kd
       points.sort_by!(&.[axis]) # Sort points by the current axis
       median = points.size // 2 # Find the median index
 
+      right_subtree = build_tree(points[median + 1..], depth + 1)
+      left_subtree = build_tree(points[...median], depth + 1)
+
       # Create a new Node with the median point as pivot, and recursively build the left and right subtrees.
       Node(T).new(
         points[median],
         axis,
-        build_tree(points[0...median], depth + 1),
-        build_tree(points[median + 1..], depth + 1)
+        left_subtree,
+        right_subtree,
       )
     end
 
