@@ -1,4 +1,4 @@
-require "./ext/priority-queue"
+require "priority-queue"
 require "./kd_tree/*"
 
 module Kd
