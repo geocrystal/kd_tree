@@ -10,7 +10,7 @@ authors:
 dependencies:
   priority-queue:
     github: spider-gazelle/priority-queue
-    branch: master
+    version: ">= 1.1.0"
 
 development_dependencies:
   ameba:
