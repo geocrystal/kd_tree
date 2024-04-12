@@ -5,6 +5,7 @@ class GeoLocation
   property name : String
   property longitude : Float64
   property latitude : Float64
+  getter size = 2 # Assuming all GeoLocation objects are 2-dimensional
 
   def initialize(@name : String, @longitude : Float64, @latitude : Float64)
   end
@@ -16,11 +17,6 @@ class GeoLocation
     when 1 then @latitude
     else        raise "Index out of bounds"
     end
-  end
-
-  # Assuming all GeoLocation objects are 2-dimensional
-  def size
-    2
   end
 end
 
