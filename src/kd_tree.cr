@@ -85,8 +85,8 @@ module Kd
     end
 
     # Calculate squared Euclidean distance between two points of type T.
-    private def distance(m : T, n : T)
-      @k.times.sum { |i| (m[i] - n[i]) ** 2 }
+    private def distance(m : T, n : T) : Float64
+      @k.times.sum { |i| (m[i] - n[i]) ** 2 }.to_f
     end
   end
 end
