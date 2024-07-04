@@ -8,9 +8,8 @@ authors:
   - Anton Maminov <anton.maminov@gmail.com>
 
 dependencies:
-  priority-queue:
-    github: spider-gazelle/priority-queue
-    version: ">= 1.1.0"
+  pqueue:
+    github: beta-ziliani/pqueue.cr
 
 development_dependencies:
   ameba:
