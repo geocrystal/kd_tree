@@ -142,7 +142,7 @@ puts "Nearest to London: #{nearest_point.first.name} (longitude #{nearest_point.
 
 ## Performance
 
-Using a tree with 1 million points `[x, y] of Float64` on my i7-8550U CPU @ 1.80GHz:
+Using a tree with 1 million points `[x, y] of Float64` on my Apple M1 Pro (10) @ 3.23 GHz:
 
 `crystal run benchmark/benchmark.cr --release`
 
