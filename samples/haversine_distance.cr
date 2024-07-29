@@ -22,10 +22,10 @@ end
 
 module Kd
   class Tree(T)
-    private def distance(m : T, n : T)
+    private def distance(m : T, n : T) : Float64
       # Calling `Haversine.distance` with 2 pairs of latitude/longitude coordinates.
       # Returns a distance in meters.
-      Haversine.distance({m.latitude, m.longitude}, {n.latitude, n.longitude}).to_meters
+      Haversine.distance({m.latitude, m.longitude}, {n.latitude, n.longitude}).to_meters.to_f
     end
   end
 end
