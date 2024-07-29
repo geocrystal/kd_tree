@@ -1,10 +1,10 @@
 require "benchmark"
 require "../src/kd_tree"
 
-# Generate 10 millions random points
-points = Array.new(10_000_000) { [rand * 100.0, rand * 100.0] }
+# Generate 1 million random points
+points = Array.new(1_000_000) { [rand * 100.0, rand * 100.0] }
 
-puts "Benchmarking KD-Tree with 10 millions points"
+puts "Benchmarking KD-Tree with 1 million points"
 
 Benchmark.bm do |x|
   tree = nil

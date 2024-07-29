@@ -148,15 +148,15 @@ Using a tree with 1 million points `[x, y] of Float64` on my i7-8550U CPU @ 1.80
 
 ```console
 Benchmarking KD-Tree with 1 million points
-build(init): 3.43 seconds
                         user     system      total        real
-nearest point   1   0.000021   0.000000   0.000021 (  0.000022)
-nearest point   5   0.000014   0.000000   0.000014 (  0.000014)
-nearest point  10   0.000011   0.000000   0.000011 (  0.000012)
-nearest point  50   0.000061   0.000000   0.000061 (  0.000061)
-nearest point 100   0.000083   0.000001   0.000084 (  0.000084)
-nearest point 255   0.000238   0.000002   0.000240 (  0.000240)
-nearest point 999   0.000981   0.000009   0.000990 (  0.000990)
+build(init)         1.840140   0.021103   1.861243 (  1.872732)
+nearest point   1   0.004484   0.000002   0.004486 (  0.004490)
+nearest point   5   0.007391   0.000010   0.007401 (  0.007479)
+nearest point  10   0.011406   0.000090   0.011496 (  0.011679)
+nearest point  50   0.034097   0.000819   0.034916 (  0.035175)
+nearest point 100   0.133828   0.003721   0.137549 (  0.156548)
+nearest point 255   0.220200   0.000631   0.220831 (  0.223081)
+nearest point 999   0.731941   0.000441   0.732382 (  0.737236)
 ```
 
 ## Contributing
