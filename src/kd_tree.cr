@@ -1,4 +1,5 @@
-require "priority-queue"
+require "pqueue"
+
 require "./kd_tree/*"
 
 module Kd
@@ -46,11 +47,20 @@ module Kd
     def nearest(target : T, n : Int32 = 1) : Array(T)
       return [] of T if n < 1
 
-      best_nodes = Priority::Queue(Node(T)).new # Initialize a priority queue to store the best nodes found
+      best_nodes = PQueue::PQueue(Float64, Node(T)).new(0) # Initialize a priority queue to store the best nodes found
 
       find_n_nearest(@root, target, 0, best_nodes, n) # Recursively find the nearest nodes
 
-      best_nodes.map(&.value.pivot) # Extract the pivot points from the nodes and return them
+      best_n_nodes = [] of T
+
+      # Extract the pivot points from the nodes and return them
+      n.times do
+        best_nodes.delete_min.try do |node|
+          best_n_nodes << node[1].pivot
+        end
+      end
+
+      best_n_nodes
     end
 
     # Recursive method to find the nearest nodes to a target point.
@@ -58,7 +68,7 @@ module Kd
       node : Node(T)?,
       target : T,
       depth : Int32,
-      best_nodes : Priority::Queue(Node(T)),
+      best_nodes : PQueue::PQueue(Float64, Node(T)),
       n : Int32
     )
       return unless node
@@ -73,13 +83,10 @@ module Kd
       find_n_nearest(next_node, target, depth + 1, best_nodes, n)
 
       # Calculate the distance from the target to the current node's pivot and add to the queue
-      best_nodes.push(distance(target, node.pivot), node)
-
-      # Ensure that only the 'n' closest nodes are kept in the queue
-      best_nodes.pop if best_nodes.size > n
+      best_nodes.insert(distance(target, node.pivot), node)
 
       # Check if the other side might contain closer points and potentially search there too
-      if other_node && (best_nodes.size < n || (target[axis] - node.pivot[axis]).abs ** 2 < distance(target, best_nodes.last.value.pivot))
+      if other_node && (best_nodes.size < n || (target[axis] - node.pivot[axis]).abs ** 2 < distance(target, best_nodes.to_a.last[1].pivot))
         find_n_nearest(other_node, target, depth + 1, best_nodes, n)
       end
     end
