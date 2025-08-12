@@ -10,7 +10,7 @@ jobs:
     container:
       image: crystallang/crystal
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Install dependencies
         run: shards install --ignore-crystal-version
       - name: Generate documentation
