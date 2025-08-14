@@ -59,7 +59,7 @@ module Kd
       target : T,
       depth : Int32,
       best_nodes : Priority::Queue(Node(T)),
-      n : Int32
+      n : Int32,
     )
       return unless node
 
