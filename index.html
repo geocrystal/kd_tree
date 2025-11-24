@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.17.1">
+<meta name="crystal_docs.project_version" content="0.6.0">
+<meta name="crystal_docs.project_name" content="kd_tree">
+
+
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="kd_tree">
+  <title>kd_tree 0.6.0</title>
+  <script type="text/javascript">
+  CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="index.html">
+          kd_tree
+        </a>
+      </h1>
+
+      <span class="project-version">
+        0.6.0
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent " data-id="kd_tree/Kd" data-name="kd">
+      <a href="Kd.html">Kd</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="kd_tree/Kd/Tree" data-name="kd::tree(t)">
+      <a href="Kd/Tree.html">Tree</a>
+      
+        <ul>
+  
+  <li class=" " data-id="kd_tree/Kd/Tree/Node" data-name="kd::tree::node(t)">
+      <a href="Kd/Tree/Node.html">Node</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1><a id="kdtree" class="anchor" href="#kdtree">  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Kd::Tree</h1>
+<p><a href="https://github.com/geocrystal/kd_tree/actions/workflows/crystal.yml"><img src="https://github.com/geocrystal/kd_tree/actions/workflows/crystal.yml/badge.svg" alt="Crystal CI" /></a>
+<a href="https://github.com/geocrystal/kd_tree/releases"><img src="https://img.shields.io/github/release/geocrystal/kd_tree.svg" alt="GitHub release" /></a>
+<a href="https://geocrystal.github.io/kd_tree/"><img src="https://img.shields.io/badge/docs-available-brightgreen.svg" alt="Docs" /></a>
+<a href="https://github.com/geocrystal/kd_tree/blob/master/LICENSE"><img src="https://img.shields.io/github/license/geocrystal/kd_tree.svg" alt="License" /></a></p>
+<p>Crystal implementation of &quot;K-Dimensional Tree&quot; and &quot;N-Nearest Neighbors&quot;
+based on <a href="http://en.wikipedia.org/wiki/Kd-tree">http://en.wikipedia.org/wiki/Kd-tree</a>.</p>
+<h2><a id="installation" class="anchor" href="#installation">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Installation</h2>
+<p>Add this to your application's <code>shard.yml</code>:</p>
+<pre><code class="language-yaml">dependencies:
+  kd_tree:
+    github: geocrystal/kd_tree</code></pre>
+<h2><a id="usage" class="anchor" href="#usage">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Usage</h2>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;kd_tree&quot;</span></code></pre>
+<p>For example, construct a new tree where each point is represented as a two-dimensional array in the form [x, y], where x and y are numbers (such as Int32, Float64, etc).</p>
+<pre><code class="language-crystal">kd <span class="o">=</span> <span class="t">Kd</span><span class="t">::</span><span class="t">Tree</span>(<span class="t">Array</span>(<span class="t">Int32</span>)).new(points)</code></pre>
+<p>Find the nearest point to <code>[x, y]</code>. Returns an array with one point:</p>
+<pre><code class="language-crystal">kd.nearest([x, y])</code></pre>
+<p>Find the nearest <code>k</code> points to <code>[x, y]</code>. Returns an array of points:</p>
+<pre><code class="language-crystal">kd.nearest([x, y], k)</code></pre>
+<h2><a id="example" class="anchor" href="#example">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Example</h2>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;kd_tree&quot;</span>
+
+points <span class="o">=</span> [
+  [<span class="n">2.0</span>, <span class="n">3.0</span>],
+  [<span class="n">5.0</span>, <span class="n">4.0</span>],
+  [<span class="n">4.0</span>, <span class="n">7.0</span>],
+  [<span class="n">7.0</span>, <span class="n">2.0</span>],
+  [<span class="n">8.0</span>, <span class="n">1.0</span>],
+  [<span class="n">9.0</span>, <span class="n">6.0</span>],
+]
+
+kd <span class="o">=</span> <span class="t">Kd</span><span class="t">::</span><span class="t">Tree</span>(<span class="t">Array</span>(<span class="t">Float64</span>)).new(points)
+
+kd.nearest([<span class="n">1.0</span>, <span class="n">1.0</span>])
+<span class="c"># =&gt; [[2.0, 3.0]])</span>
+
+kd_tree.nearest([<span class="n">1.0</span>, <span class="n">1.0</span>], <span class="n">2</span>)
+<span class="c"># =&gt; [[2.0, 3.0], [5.0, 4.0]])</span></code></pre>
+<h3><a id="complex-objects" class="anchor" href="#complex-objects">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Complex objects</h3>
+<p><code><a href="Kd/Tree.html">Kd::Tree</a>(T)</code> can accept any object that responds to <code>#size</code> and <code>#[](i : Int)</code> methods.</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">GeoLocation</span>
+  property name : <span class="t">String</span>
+  property longitude : <span class="t">Float64</span>
+  property latitude : <span class="t">Float64</span>
+  getter size <span class="o">=</span> <span class="n">2</span> <span class="c"># Assuming all GeoLocation objects are 2-dimensional</span>
+
+  <span class="k">def</span> <span class="m">initialize</span>(@name : <span class="t">String</span>, @longitude : <span class="t">Float64</span>, @latitude : <span class="t">Float64</span>)
+  <span class="k">end</span>
+
+  <span class="c"># Define an indexer to allow easy access by index for longitude and latitude</span>
+  <span class="k">def</span> <span class="m">[]</span>(index : <span class="t">Int32</span>) : <span class="t">Float64</span>
+    <span class="k">case</span> index
+    <span class="k">when</span> <span class="n">0</span> <span class="k">then</span> @longitude
+    <span class="k">when</span> <span class="n">1</span> <span class="k">then</span> @latitude
+    <span class="k">else</span>        raise <span class="s">&quot;Index out of bounds&quot;</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c"># Create an array of GeoLocation points</span>
+points <span class="o">=</span> [
+  <span class="t">GeoLocation</span>.new(<span class="s">&quot;New York&quot;</span>, <span class="n">-73.935242</span>, <span class="n">40.730610</span>),
+  <span class="t">GeoLocation</span>.new(<span class="s">&quot;Los Angeles&quot;</span>, <span class="n">-118.243683</span>, <span class="n">34.052235</span>),
+  <span class="t">GeoLocation</span>.new(<span class="s">&quot;London&quot;</span>, <span class="n">-0.127647</span>, <span class="n">51.507322</span>),
+  <span class="t">GeoLocation</span>.new(<span class="s">&quot;Tokyo&quot;</span>, <span class="n">139.691711</span>, <span class="n">35.689487</span>),
+]
+
+<span class="c"># Initialize the KD-tree with these points</span>
+kd_tree <span class="o">=</span> <span class="t">Kd</span><span class="t">::</span><span class="t">Tree</span>(<span class="t">GeoLocation</span>).new(points)
+
+<span class="c"># Find the nearest point to London</span>
+target <span class="o">=</span> <span class="t">GeoLocation</span>.new(<span class="s">&quot;Near London&quot;</span>, <span class="n">-0.125740</span>, <span class="n">51.508530</span>)
+nearest_point <span class="o">=</span> kd_tree.nearest(target, <span class="n">1</span>)
+puts <span class="s">&quot;Nearest to London: </span><span class="i">#{</span>nearest_point.first.name<span class="i">}</span><span class="s"> (longitude </span><span class="i">#{</span>nearest_point.first.longitude<span class="i">}</span><span class="s">, latitude </span><span class="i">#{</span>nearest_point.first.latitude<span class="i">}</span><span class="s">)&quot;</span>
+<span class="c"># Nearest to London: London (longitude -0.127647, latitude 51.507322)</span></code></pre>
+<h3><a id="distance" class="anchor" href="#distance">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Distance</h3>
+<p>For distance calculations, the squared Euclidean distance is used. However, you can easily monkey-patch the <code>Kd::Tree#distance</code> method to implement another algorithm, such as the Haversine formula, to calculate distances between two points given their latitudes and longitudes.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;haversine&quot;</span>
+
+<span class="k">module</span> <span class="t">Kd</span>
+  <span class="k">class</span> <span class="t">Tree</span>(<span class="t">T</span>)
+    <span class="k">private</span> <span class="k">def</span> <span class="m">distance</span>(m : <span class="t">T</span>, n : <span class="t">T</span>)
+      <span class="c"># Calling `Haversine.distance` with 2 pairs of latitude/longitude coordinates.</span>
+      <span class="c"># Returns a distance in meters.</span>
+      <span class="t">Haversine</span>.distance({m.latitude, m.longitude}, {n.latitude, n.longitude}).to_meters
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+points <span class="o">=</span> [
+  <span class="t">GeoLocation</span>.new(<span class="s">&quot;New York&quot;</span>, <span class="n">-73.935242</span>, <span class="n">40.730610</span>),
+  <span class="t">GeoLocation</span>.new(<span class="s">&quot;Los Angeles&quot;</span>, <span class="n">-118.243683</span>, <span class="n">34.052235</span>),
+  <span class="t">GeoLocation</span>.new(<span class="s">&quot;London&quot;</span>, <span class="n">-0.127647</span>, <span class="n">51.507322</span>),
+  <span class="t">GeoLocation</span>.new(<span class="s">&quot;Tokyo&quot;</span>, <span class="n">139.691711</span>, <span class="n">35.689487</span>),
+]
+
+kd_tree <span class="o">=</span> <span class="t">Kd</span><span class="t">::</span><span class="t">Tree</span>(<span class="t">GeoLocation</span>).new(points)
+
+<span class="c"># Find the nearest point to London</span>
+target <span class="o">=</span> <span class="t">GeoLocation</span>.new(<span class="s">&quot;Near London&quot;</span>, <span class="n">-0.125740</span>, <span class="n">51.508530</span>)
+nearest_point <span class="o">=</span> kd_tree.nearest(target, <span class="n">1</span>)
+puts <span class="s">&quot;Nearest to London: </span><span class="i">#{</span>nearest_point.first.name<span class="i">}</span><span class="s"> (longitude </span><span class="i">#{</span>nearest_point.first.longitude<span class="i">}</span><span class="s">, latitude </span><span class="i">#{</span>nearest_point.first.latitude<span class="i">}</span><span class="s">)&quot;</span>
+<span class="c"># Nearest to London: London (longitude -0.127647, latitude 51.507322)</span></code></pre>
+<h2><a id="performance" class="anchor" href="#performance">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Performance</h2>
+<p>Using a tree with 1 million points <code>[x, y] of Float64</code> on my Apple M1 Pro (10) @ 3.23 GHz:</p>
+<p><code>crystal run benchmark/benchmark.cr --release</code></p>
+<pre><code class="language-console">Benchmarking KD-Tree with 1 million points
+                        user     system      total        real
+build(init)         1.840140   0.021103   1.861243 (  1.872732)
+nearest point   1   0.004484   0.000002   0.004486 (  0.004490)
+nearest point   5   0.007391   0.000010   0.007401 (  0.007479)
+nearest point  10   0.011406   0.000090   0.011496 (  0.011679)
+nearest point  50   0.034097   0.000819   0.034916 (  0.035175)
+nearest point 100   0.133828   0.003721   0.137549 (  0.156548)
+nearest point 255   0.220200   0.000631   0.220831 (  0.223081)
+nearest point 999   0.731941   0.000441   0.732382 (  0.737236)</code></pre>
+<h2><a id="contributing" class="anchor" href="#contributing">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Contributing</h2>
+<ol>
+<li>Fork it (<a href="https://github.com/geocrystal/kd_tree/fork">https://github.com/geocrystal/kd_tree/fork</a>)</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create a new Pull Request</li>
+</ol>
+<h2><a id="contributors" class="anchor" href="#contributors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Contributors</h2>
+<ul>
+<li><a href="https://github.com/mamantoha">mamantoha</a> Anton Maminov - creator, maintainer</li>
+</ul>
+</div>
+</body>
+</html>
