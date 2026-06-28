@@ -87,7 +87,7 @@ describe Kd::Tree do
     kd_tree = Kd::Tree(Array(Float64)).new(points)
 
     it "have root" do
-      kd_tree.root.should_not eq(nil)
+      kd_tree.root.should_not be_nil
     end
 
     it "#nearest one" do

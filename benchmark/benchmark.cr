@@ -9,9 +9,9 @@ puts "Benchmarking KD-Tree with 1 million points"
 Benchmark.bm do |x|
   tree = nil
 
-  x.report("build(init)") {
+  x.report("build(init)") do
     tree = Kd::Tree(Array(Float64)).new(points)
-  }
+  end
 
   [1, 5, 10, 50, 100, 255, 999].each do |n|
     x.report("nearest point #{n.to_s.rjust(3, ' ')}") do
